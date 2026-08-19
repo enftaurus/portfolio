@@ -15,8 +15,9 @@
 
 .terminalModalWindow {
   width: 720px;
-  max-width: 95%;
-  height: 480px;
+  max-width: 100%;
+  height: 520px;
+  max-height: 85vh;
   background: #0a0a0a;
   border: 1px solid rgba(57, 255, 136, 0.3);
   border-radius: 8px;
@@ -34,6 +35,7 @@
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
 .headerTitle {
@@ -42,6 +44,7 @@
   gap: 0.5rem;
   color: var(--accent);
   font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .closeBtn {
@@ -49,15 +52,20 @@
   border: none;
   color: var(--text-dim);
   cursor: pointer;
-  padding: 2px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
 }
 
 .closeBtn:hover {
   color: #ff5f56;
+  background: rgba(255, 95, 86, 0.1);
 }
 
 .modalBody {
-  padding: 1.2rem;
+  padding: 1rem 1.2rem;
   flex: 1;
   overflow-y: auto;
   display: flex;
@@ -67,25 +75,48 @@
   line-height: 1.5;
 }
 
+.modalBody::-webkit-scrollbar {
+  width: 5px;
+}
+.modalBody::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modalBody::-webkit-scrollbar-thumb {
+  background: rgba(57, 255, 136, 0.2);
+  border-radius: 3px;
+}
+
+.logBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
 .userText {
   color: var(--accent);
   font-weight: 700;
   margin-right: 0.5rem;
+  flex-shrink: 0;
 }
 
 .promptLine {
   display: flex;
   align-items: center;
+  word-break: break-word;
 }
 
 .outputLine {
   color: var(--text);
   margin-top: 2px;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .promptForm {
   display: flex;
   align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 .modalInput {
@@ -96,4 +127,94 @@
   font-family: var(--font-mono);
   font-size: 0.85rem;
   flex: 1;
+  min-width: 0;
+}
+
+.modalInput::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.78rem;
+}
+
+.mobileSubmitBtn {
+  display: none;
+  background: rgba(57, 255, 136, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Quick command chips for touch screens / mobile */
+.quickBar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  background: rgba(18, 18, 18, 0.95);
+  border-top: 1px solid var(--border-color);
+  overflow-x: auto;
+  flex-shrink: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quickBar::-webkit-scrollbar {
+  display: none;
+}
+
+.quickLabel {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-right: 0.2rem;
+  flex-shrink: 0;
+}
+
+.chipBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.chipBtn:hover, .chipBtn:active {
+  background: rgba(57, 255, 136, 0.18);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .modalOverlay {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .terminalModalWindow {
+    height: 80vh;
+    max-height: 80vh;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .modalBody {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .mobileSubmitBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modalInput {
+    font-size: 16px; /* Prevents iOS auto-zoom on input focus */
+  }
 }

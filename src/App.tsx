@@ -9,19 +9,28 @@ import { SkillsSection } from "./components/Skills/SkillsSection";
 import { CurrentlyBuilding } from "./components/CurrentlyBuilding/CurrentlyBuilding";
 import { ContactSection } from "./components/Contact/ContactSection";
 import { TerminalModal } from "./components/EasterEgg/TerminalModal";
+import { CommandPalette } from "./components/CommandPalette/CommandPalette";
 import { CustomCursor } from "./components/Cursor/CustomCursor";
 import { WarpDivider } from "./components/shared/WarpDivider";
 
 export function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading]         = useState(true);
   const [terminalOpen, setTerminalOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen]   = useState(false);
 
-  // Global keydown listener for `~` key to trigger Terminal Modal
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "`" || e.key === "~") {
+      // ~ or ` → toggle terminal
+      if ((e.key === "`" || e.key === "~") && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
-        setTerminalOpen((prev) => !prev);
+        setTerminalOpen(prev => !prev);
+        return;
+      }
+      // Ctrl+K or Cmd+K → toggle command palette
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        setPaletteOpen(prev => !prev);
+        return;
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -31,12 +40,12 @@ export function App() {
   return (
     <div className="app-root">
       {loading && <PageLoader onComplete={() => setLoading(false)} />}
-      
+
       {!loading && (
         <>
-          <div className="scanline"></div>
+          <div className="scanline" />
           <CustomCursor />
-          
+
           <Navbar onOpenTerminal={() => setTerminalOpen(true)} />
 
           <main>
@@ -46,14 +55,19 @@ export function App() {
             <ExperienceSection />
             <ProjectsSection />
             <SkillsSection />
-
             <CurrentlyBuilding />
             <ContactSection />
           </main>
 
-          <TerminalModal 
-            isOpen={terminalOpen} 
-            onClose={() => setTerminalOpen(false)} 
+          <TerminalModal
+            isOpen={terminalOpen}
+            onClose={() => setTerminalOpen(false)}
+          />
+
+          <CommandPalette
+            isOpen={paletteOpen}
+            onClose={() => setPaletteOpen(false)}
+            onOpenTerminal={() => setTerminalOpen(true)}
           />
         </>
       )}

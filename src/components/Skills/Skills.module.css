@@ -1,9 +1,12 @@
+/* ─── Skills Section — SVG node graph ───────────────────────────────────── */
+
 .skillsSection {
   padding: 6rem 0;
 }
 
+/* Section header ------------------------------------------------------------ */
 .sectionHeader {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .sectionNumber {
@@ -30,132 +33,121 @@
   margin-top: 1rem;
 }
 
-.systemMapMatrix {
-  background: rgba(17, 17, 17, 0.7);
+/* Terminal-chrome frame around the graph ------------------------------------ */
+.graphFrame {
+  background: rgba(14, 14, 14, 0.75);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
+  backdrop-filter: blur(8px);
 }
 
-.terminalHeader {
+.graphFrameHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.2rem;
+  padding: 0.6rem 1rem;
   background: rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid var(--border-color);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-dim);
-}
-
-.matrixContent {
-  padding: 2rem;
-}
-
-.categoriesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-
-.categoryBlock {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.categoryBlock.isActive, .categoryBlock:hover {
-  border-color: var(--accent);
-  background: var(--accent-dim);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 20px rgba(57, 255, 136, 0.1);
-}
-
-.categoryHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.categoryIconTitle {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.categoryName {
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--text);
   font-family: var(--font-mono);
+  letter-spacing: 0.06em;
 }
 
-.skillCount {
-  font-size: 0.65rem;
-  color: var(--text-dim);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: var(--font-mono);
+.graphFrameBody {
+  padding: 2rem 1.5rem 1.5rem;
 }
 
-.skillsNodesList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+/* Graph SVG wrapper --------------------------------------------------------- */
+.graphWrapper {
+  width: 100%;
 }
 
-.skillNode {
-  padding: 0.6rem 0.8rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.skillNode.isHighlighted {
-  border-left: 2px solid var(--accent);
-}
-
-.skillNode:hover {
-  border-color: rgba(57, 255, 136, 0.3);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.skillMain {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.skillName {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  font-family: var(--font-mono);
-}
-
-.skillLevel {
-  font-size: 0.65rem;
-  color: var(--accent);
-  background: var(--accent-dim);
-  padding: 1px 5px;
-  border-radius: 3px;
-  font-family: var(--font-mono);
-}
-
-.skillDesc {
+.graphSvg {
+  width: 100%;
+  max-width: 900px;
   display: block;
-  font-size: 0.7rem;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+/* Edge draw-in animation ---------------------------------------------------- */
+.edgeLine {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: drawEdge 1.4s ease forwards;
+}
+
+@keyframes drawEdge {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Hub pulse ring animation -------------------------------------------------- */
+.hubPulse {
+  animation: hubBreath 2.2s ease-in-out infinite;
+}
+
+@keyframes hubBreath {
+  0%, 100% { r: 34; opacity: 0.2; }
+  50%       { r: 40; opacity: 0.08; }
+}
+
+/* Legend -------------------------------------------------------------------- */
+.graphLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0 1rem 1rem;
+}
+
+.legendBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 0.32rem 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.legendBtn:hover,
+.legendActive {
+  border-color: var(--cc, var(--accent));
+  color: var(--cc, var(--accent));
+  background: color-mix(in srgb, var(--cc, var(--accent)) 8%, transparent);
+}
+
+.legendDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Usage hint ---------------------------------------------------------------- */
+.graphHint {
+  text-align: center;
+  margin-top: 1.4rem;
+  font-size: 0.72rem;
   color: var(--text-dim);
-  margin-top: 4px;
-  font-family: var(--font-sans);
-  line-height: 1.3;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+/* Mobile -------------------------------------------------------------------- */
+@media (max-width: 680px) {
+  .graphFrameHeader { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+  .graphFrameBody   { padding: 1rem 0.5rem; }
+  .graphLegend      { gap: 0.4rem; }
+  .legendBtn        { font-size: 0.62rem; padding: 0.25rem 0.55rem; }
 }

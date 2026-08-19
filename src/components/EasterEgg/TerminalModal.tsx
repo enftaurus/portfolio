@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Terminal } from "lucide-react";
+import { X, Terminal as TerminalIcon, CornerDownLeft } from "lucide-react";
 import confetti from "canvas-confetti";
 import styles from "./TerminalModal.module.css";
 
@@ -14,6 +14,18 @@ interface CommandLog {
   output: string | React.ReactNode;
 }
 
+const COMMAND_REGISTRY = [
+  "help",
+  "about",
+  "projects",
+  "skills",
+  "contact",
+  "coffee",
+  "sudo hire-raja",
+  "clear",
+  "exit",
+];
+
 export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose }) => {
   const [inputVal, setInputVal] = useState("");
   const [logs, setLogs] = useState<CommandLog[]>([
@@ -22,10 +34,10 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
       output: (
         <div>
           <div>RAJA BABU KURRA INTERACTIVE TERMINAL v2.0</div>
-          <div>Type <span style={{ color: "var(--accent)" }}>help</span> to view available commands.</div>
+          <div>Type <span style={{ color: "var(--accent)" }}>help</span> or tap quick actions below. Press <kbd style={{ background: "rgba(255,255,255,0.1)", padding: "1px 4px", borderRadius: "3px" }}>Tab</kbd> to autofill.</div>
         </div>
-      )
-    }
+      ),
+    },
   ]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,9 +53,8 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [logs]);
 
-  const handleCommand = (e: React.FormEvent) => {
-    e.preventDefault();
-    const cmd = inputVal.trim().toLowerCase();
+  const runCommandStr = (cmdRaw: string) => {
+    const cmd = cmdRaw.trim().toLowerCase();
     if (!cmd) return;
 
     let output: React.ReactNode = "";
@@ -96,7 +107,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
         confetti({
           particleCount: 120,
           spread: 70,
-          origin: { y: 0.6 }
+          origin: { y: 0.6 },
         });
         output = (
           <div style={{ color: "var(--accent)", fontWeight: "bold" }}>
@@ -126,6 +137,24 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
     setInputVal("");
   };
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    runCommandStr(inputVal);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const current = inputVal.trim().toLowerCase();
+      if (!current) return;
+      // Match prefix in COMMAND_REGISTRY
+      const matched = COMMAND_REGISTRY.find((cmd) => cmd.startsWith(current));
+      if (matched) {
+        setInputVal(matched);
+      }
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -134,14 +163,14 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
         <motion.div
           className={styles.terminalModalWindow}
           onClick={(e) => e.stopPropagation()}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.2 }}
         >
           <div className={styles.terminalHeader}>
             <div className={styles.headerTitle}>
-              <Terminal size={14} />
+              <TerminalIcon size={14} />
               <span>RAJA@PORTFOLIO:~$</span>
             </div>
             <button className={styles.closeBtn} onClick={onClose} aria-label="Close terminal">
@@ -151,7 +180,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
 
           <div className={styles.modalBody} onClick={() => inputRef.current?.focus()}>
             {logs.map((log, i) => (
-              <div key={i} className="log-block">
+              <div key={i} className={styles.logBlock}>
                 {log.command !== "welcome" && (
                   <div className={styles.promptLine}>
                     <span className={styles.userText}>raja@portfolio:~$</span> <span>{log.command}</span>
@@ -161,19 +190,40 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
               </div>
             ))}
 
-            <form onSubmit={handleCommand} className={styles.promptForm}>
+            <form onSubmit={handleFormSubmit} className={styles.promptForm}>
               <span className={styles.userText}>raja@portfolio:~$</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.modalInput}
                 autoFocus
                 spellCheck={false}
+                autoCapitalize="off"
+                placeholder="Type command or press Tab..."
               />
+              <button type="submit" className={styles.mobileSubmitBtn} aria-label="Submit command">
+                <CornerDownLeft size={14} />
+              </button>
             </form>
             <div ref={bottomRef} />
+          </div>
+
+          {/* Quick command buttons for mobile and touch screens */}
+          <div className={styles.quickBar}>
+            <span className={styles.quickLabel}>QUICK:</span>
+            {COMMAND_REGISTRY.map((cmd) => (
+              <button
+                key={cmd}
+                type="button"
+                className={styles.chipBtn}
+                onClick={() => runCommandStr(cmd)}
+              >
+                {cmd}
+              </button>
+            ))}
           </div>
         </motion.div>
       </div>
