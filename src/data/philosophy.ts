@@ -31,10 +31,5 @@ export const currentlyBuildingData: CurrentlyBuildingItem[] = [
     name: "Eterno — DSA & Dev Platform", 
     progress: 10, 
     status: "EARLY BUILD" 
-  },
-  { 
-    name: "Portfolio v2 — Workstation", 
-    progress: 95, 
-    status: "STAGING" 
   }
 ];

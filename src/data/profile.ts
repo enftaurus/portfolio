@@ -4,8 +4,8 @@ export const profileData: ProfileData = {
   name: "Raja Babu Kurra",
   handle: "raja@workstation",
   role: "CS UNDERGRAD · BACKEND ENGINEERING · APPLIED AI",
-  subheading: "I build backend systems, AI-powered products, and occasionally things that probably didn't need to be this complicated.",
-  bio: "Computer Science undergraduate bridging backend engineering and Artificial Intelligence. Experienced in building scalable, production-ready systems using Go and Python while developing AI applications with LLMs, Agentic AI, multi-agent systems, and semantic search. Strong foundation in Data Structures, Algorithms, and distributed system design.",
+  subheading: "Backend systems engineer powered by Go, Python & caffeine overload. I build agentic AI pipelines, high-throughput microservices, and distributed cloud tools.",
+  bio: "Computer Science undergraduate bridging high-performance backend systems and Applied Artificial Intelligence. Deeply interested in Andrej Karpathy's research on neural networks & building systems from first principles. Experienced in building production-ready services using Go and Python while orchestrating AI agents (LangGraph, pgvector, FAISS, AWS Bedrock). Operating at 98% caffeine saturation.",
   location: "Hyderabad, India",
   cgpa: "9.09 / 10.0",
   education: {
@@ -15,10 +15,11 @@ export const profileData: ProfileData = {
   },
   facts: [
     { label: "EDUCATION", value: "Vasavi College of Engineering — B.E. CSE" },
+    { label: "CAFFEINE STATUS", value: "98% [OVERLOADED ☕]" },
     { label: "FOCUS", value: "Backend · Agentic AI · Distributed Systems" },
     { label: "ACHIEVEMENT", value: "Runner-Up, GEN AI Forge 2026 (NASSCOM)" },
     { label: "LEARNING", value: "Machine Learning (Andrew Ng Specialization)" },
-    { label: "RESEARCH", value: "Inspired by Andrej Karpathy's research" },
+    { label: "RESEARCH", value: "First Principles & Karpathy's Neural Net Paradigms" },
     { label: "LOCATION", value: "Hyderabad, India" }
   ],
   status: "BUILDING",
