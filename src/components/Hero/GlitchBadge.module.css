@@ -1,0 +1,57 @@
+.badge {
+  position: absolute;
+  bottom: 3.2rem; /* just above scroll indicator */
+  right: 1.5rem;
+  z-index: 3;
+  width: clamp(200px, 28vw, 380px);
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(10, 10, 10, 0.78);
+  border: 1px solid rgba(57, 255, 136, 0.22);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  /* subtle green left accent */
+  border-left: 2px solid var(--accent);
+}
+
+.marqueeTrack {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.4rem 0;
+}
+
+.marqueeInner {
+  display: flex;
+  white-space: nowrap;
+}
+
+.marqueeInner span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.07em;
+  padding: 0 0.8rem;
+  /* individual characters get a faint glow */
+  text-shadow: 0 0 8px rgba(57, 255, 136, 0.5);
+}
+
+/* Thin scanline strip over the badge */
+.scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+}
+
+@media (max-width: 768px) {
+  .badge {
+    display: none; /* not needed on mobile — watermark less visible */
+  }
+}

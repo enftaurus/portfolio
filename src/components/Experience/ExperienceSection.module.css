@@ -1,0 +1,220 @@
+.experienceSection {
+  padding: 6rem 0;
+}
+
+.sectionHeader {
+  margin-bottom: 3rem;
+}
+
+.sectionNumber {
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-family: var(--font-mono);
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.sectionLine {
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-color), transparent);
+  margin-top: 1rem;
+}
+
+.timelineContainer {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timelineTree {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 80px 40px 1fr;
+  align-items: start;
+}
+
+.timelineYear {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--accent);
+  padding-top: 0.5rem;
+}
+
+.timelineConnector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-top: 0.8rem;
+}
+
+.connectorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.connectorLine {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent), var(--border-color));
+  margin-top: 6px;
+}
+
+.timelineContent {
+  background: rgba(17, 17, 17, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+}
+
+.companyBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.periodBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+.timelineBody {
+  padding: 1.5rem;
+}
+
+.roleTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.roleDesc {
+  font-family: var(--font-sans);
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.highlightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.highlightIcon {
+  color: var(--accent);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.timelineFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.techTags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.techTag {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.metricPill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--accent-dim);
+  border: 1px solid rgba(57, 255, 136, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.metricText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.metricValue {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.metricLabel {
+  font-size: 0.65rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+@media (max-width: 650px) {
+  .timelineItem {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .timelineConnector {
+    display: none;
+  }
+}
