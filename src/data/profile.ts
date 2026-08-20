@@ -4,8 +4,8 @@ export const profileData: ProfileData = {
   name: "Raja Babu Kurra",
   handle: "raja@workstation",
   role: "CS UNDERGRAD · BACKEND ENGINEERING · APPLIED AI",
-  subheading: "Backend systems engineer powered by Go, Python & caffeine overload. I build agentic AI pipelines, high-throughput microservices, and distributed cloud tools.",
-  bio: "Computer Science undergraduate bridging high-performance backend systems and Applied Artificial Intelligence. Deeply interested in Andrej Karpathy's research on neural networks & building systems from first principles. Experienced in building production-ready services using Go and Python while orchestrating AI agents (LangGraph, pgvector, FAISS, AWS Bedrock). Operating at 98% caffeine saturation.",
+  subheading: "Backend systems engineer powered by Go and Python. I build agentic AI pipelines, high-throughput microservices, and distributed cloud tools.",
+  bio: "Computer Science undergraduate bridging high-performance backend systems and Applied Artificial Intelligence. Deeply interested in Andrej Karpathy's research on neural networks & building systems from first principles. Experienced in building production-ready services using Go and Python while orchestrating AI agents (LangGraph, pgvector, FAISS, AWS Bedrock).",
   location: "Hyderabad, India",
   cgpa: "9.09 / 10.0",
   education: {

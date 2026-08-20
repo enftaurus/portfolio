@@ -111,11 +111,6 @@ export const HeroSection: React.FC = () => {
             <span className={styles.statValue}>Go + Python</span>
             <span className={styles.statLabel}>Core Stack</span>
           </div>
-          <div className={styles.statDivider}>/</div>
-          <div className={styles.statItem}>
-            <span className={styles.statValue} style={{ color: "var(--accent)" }}>98% ☕</span>
-            <span className={styles.statLabel}>Caffeine Load</span>
-          </div>
         </motion.div>
       </div>
 
