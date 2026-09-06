@@ -1,0 +1,101 @@
+.catTrack {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.catContainer {
+  position: absolute;
+  bottom: 5px;
+  left: -120px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: runAcross 18s linear infinite;
+  will-change: transform;
+}
+
+@keyframes runAcross {
+  0% {
+    left: -120px;
+    transform: scaleX(1);
+  }
+  48% {
+    left: calc(100% + 20px);
+    transform: scaleX(1);
+  }
+  50% {
+    left: calc(100% + 20px);
+    transform: scaleX(-1);
+  }
+  98% {
+    left: -120px;
+    transform: scaleX(-1);
+  }
+  100% {
+    left: -120px;
+    transform: scaleX(1);
+  }
+}
+
+.catImg {
+  width: 68px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  animation: catGallop 0.45s ease-in-out infinite alternate;
+}
+
+@keyframes catGallop {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(-4deg);
+  }
+}
+
+.catBubble {
+  background: rgba(28, 25, 23, 0.95);
+  border: 1px solid var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+  white-space: nowrap;
+  animation: bubblePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.pawPrints {
+  position: absolute;
+  bottom: 12px;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: fadePaw 2s linear forwards;
+}
+
+@keyframes fadePaw {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.6); }
+}

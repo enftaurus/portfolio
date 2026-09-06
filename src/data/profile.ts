@@ -4,23 +4,23 @@ export const profileData: ProfileData = {
   name: "Raja Babu Kurra",
   handle: "raja@workstation",
   role: "CS UNDERGRAD · BACKEND ENGINEERING · APPLIED AI",
-  subheading: "Backend systems engineer powered by Go and Python. I build agentic AI pipelines, high-throughput microservices, and distributed cloud tools.",
-  bio: "Computer Science undergraduate bridging high-performance backend systems and Applied Artificial Intelligence. Deeply interested in Andrej Karpathy's research on neural networks & building systems from first principles. Experienced in building production-ready services using Go and Python while orchestrating AI agents (LangGraph, pgvector, FAISS, AWS Bedrock).",
+  subheading: "I explore technology by building it from the ground up.",
+  bio: "2nd year CS student at Vasavi College who got way too deep into backend engineering and never looked back. I spend most of my time building things that actually work in production — Go microservices, Python agentic pipelines, distributed systems. I won a TCS cybersecurity hackathon by actually understanding how the attack worked, not just patching it. Currently obsessed with how LLMs can reason and act autonomously — reading through Karpathy's work when I'm not shipping code.",
   location: "Hyderabad, India",
   cgpa: "9.09 / 10.0",
   education: {
     institution: "Vasavi College of Engineering",
     degree: "B.E. Computer Science Engineering (2024–2028)",
-    score: "CGPA: 9.09/10.0"
+    score: "CGPA: 9.09 / 10.0"
   },
   facts: [
-    { label: "EDUCATION", value: "Vasavi College of Engineering — B.E. CSE" },
-    { label: "CAFFEINE STATUS", value: "98% [OVERLOADED ☕]" },
-    { label: "FOCUS", value: "Backend · Agentic AI · Distributed Systems" },
-    { label: "ACHIEVEMENT", value: "Runner-Up, GEN AI Forge 2026 (NASSCOM)" },
-    { label: "LEARNING", value: "Machine Learning (Andrew Ng Specialization)" },
-    { label: "RESEARCH", value: "First Principles & Karpathy's Neural Net Paradigms" },
-    { label: "LOCATION", value: "Hyderabad, India" }
+    { label: "CYBER SECURITY HACKATHON", value: "🏆 Winner, TCS Technology Day Cyber Security Hackathon @ Vasavi College of Engineering" },
+    { label: "AI HACKATHON RECOGNITION", value: "🥈 Runner-Up, NASSCOM GEN AI Forge 2026 Hackathon" },
+    { label: "ENGINEERING ALMA MATER", value: "Vasavi College of Engineering — B.E. Computer Science" },
+    { label: "ENGINEERING FOCUS", value: "High-Concurrency Go · Stateful AI Agents · Distributed Systems" },
+    { label: "RESEARCH FOCUS", value: "Neural Network Architectures (Karpathy) & Low-Level CS" },
+    { label: "PRODUCTION IMPACT", value: "⚡ Enhanced ATS Candidate Matching Precision by +40%" },
+    { label: "CURRENT LOCATION", value: "Hyderabad, India" }
   ],
   status: "BUILDING",
   socialLinks: {

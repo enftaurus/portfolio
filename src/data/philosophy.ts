@@ -3,33 +3,33 @@ import { PhilosophyItem, CurrentlyBuildingItem } from "../types/portfolio";
 export const philosophyData: PhilosophyItem[] = [
   {
     id: "build",
-    title: "BUILD",
-    tagline: "Ship working systems",
-    description: "I prefer shipping a working system over designing the perfect abstraction. Production feedback beats theoretical elegance every single time."
+    title: "FIRST-PRINCIPLES ENGINEERING",
+    tagline: "Ship working production systems",
+    description: "I prioritize shipping observable, resilient production software over endless abstract theory. Real-world workload feedback trumps pure theoretical elegance every single time."
   },
   {
     id: "understand",
-    title: "UNDERSTAND",
-    tagline: "Know the machinery",
-    description: "If I use a technology, I want to understand what happens underneath it — down to memory allocations, network packets, and database execution plans."
+    title: "UNDERSTAND THE MACHINERY",
+    tagline: "Know the full metal stack",
+    description: "When using a framework or model, I inspect what happens underneath—from memory allocation and socket IO to vector index traversal and SQL execution plans."
   },
   {
     id: "break",
-    title: "BREAK & FIX",
-    tagline: "Stress test early",
-    description: "Build it. Stress it. Find out why it breaks under load. Fix the bottleneck before it reaches a user."
+    title: "STRESS TEST & REFACTOR",
+    tagline: "Break early, fortify always",
+    description: "Build the service, push it to its limits, and analyze failure points under load. Eliminate race conditions and latency bottlenecks long before production traffic hits."
   }
 ];
 
 export const currentlyBuildingData: CurrentlyBuildingItem[] = [
   { 
-    name: "Stay Up — Cloud Keepalive", 
+    name: "Stay Up — Cloud Keepalive & Uptime Engine", 
     progress: 10, 
-    status: "EARLY BUILD" 
+    status: "EARLY ACTIVE DEVELOPMENT" 
   },
   { 
-    name: "Eterno — DSA & Dev Platform", 
+    name: "Eterno — High-Performance DSA & Microservices Platform", 
     progress: 10, 
-    status: "EARLY BUILD" 
+    status: "EARLY ACTIVE DEVELOPMENT" 
   }
 ];

@@ -1,18 +1,43 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { experienceData } from "../../data/experience";
 import { Calendar, Building, TrendingUp, CheckCircle2 } from "lucide-react";
+import { AnimatedHeading } from "../shared/AnimatedHeading";
 import styles from "./ExperienceSection.module.css";
 
 export const ExperienceSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const bookY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const pyramidY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   return (
-    <section id="experience" className={styles.experienceSection}>
+    <section id="experience" ref={sectionRef} className={styles.experienceSection}>
+      {/* Floating Parallax Decorative Shapes */}
+      <motion.img
+        src="/enchantedbook-nobg.png"
+        alt="Floating Enchanted Book"
+        className={styles.floatingBook}
+        style={{ y: bookY }}
+      />
+      <motion.img
+        src="/stone-pyramid-nobg.png"
+        alt="Floating Voxel Pyramid"
+        className={styles.floatingPyramid}
+        style={{ y: pyramidY }}
+      />
+
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionNumber}>02 / EXPERIENCE</span>
-          <h2 className={styles.sectionTitle}>SYSTEM TIMELINE</h2>
-          <div className={styles.sectionLine}></div>
-        </div>
+        <AnimatedHeading
+          tag="02 / EXPERIENCE"
+          title="SYSTEM TIMELINE"
+          subtitle="Production engineering internships, high-impact milestones, and enterprise deliverables."
+        />
 
         <div className={styles.timelineContainer}>
           <div className={styles.timelineTree}>
@@ -28,10 +53,12 @@ export const ExperienceSection: React.FC = () => {
                 {/* Year Marker */}
                 <div className={styles.timelineYear}>{item.year}</div>
 
-                {/* Branch Line */}
+                {/* Branch Line with Glowing Energy Pulse */}
                 <div className={styles.timelineConnector}>
                   <div className={styles.connectorDot}></div>
-                  <div className={styles.connectorLine}></div>
+                  <div className={styles.connectorLine}>
+                    <div className={styles.energyPulse} />
+                  </div>
                 </div>
 
                 {/* Content Card */}
@@ -48,7 +75,7 @@ export const ExperienceSection: React.FC = () => {
                   </div>
 
                   <div className={styles.timelineBody}>
-                    <h3 className={styles.roleTitle}>{item.role}</h3>
+                    <h3 className={styles.roleRole}>{item.role}</h3>
                     <p className={styles.roleDesc}>{item.description}</p>
 
                     <div className={styles.highlightsList}>

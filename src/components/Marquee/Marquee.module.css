@@ -1,0 +1,113 @@
+@keyframes marquee-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.marqueeContainer {
+  position: relative;
+  width: 100%;
+  background-color: #000000;
+  overflow: hidden;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  user-select: none;
+  z-index: 5;
+}
+
+/* Nether Portal framing graphics */
+.portalLeft {
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.6));
+}
+
+.portalRight {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  height: 200px;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.6));
+}
+
+/* Slanted Ribbon Rows */
+.marqueeRow1 {
+  position: relative;
+  width: 112%;
+  margin-left: -6%;
+  transform: rotate(-3.5deg);
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.85rem 0;
+  z-index: 2;
+}
+
+.marqueeRow2 {
+  position: relative;
+  width: 112%;
+  margin-left: -6%;
+  transform: rotate(2.5deg);
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.85rem 0;
+  z-index: 3;
+}
+
+.marqueeTextwrapperHold {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 24s linear infinite;
+  will-change: transform;
+}
+
+.marqueeTextwrapperHold.reverse {
+  animation-name: marquee-right;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+  white-space: nowrap;
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+}
+
+.bullet {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.4rem;
+}

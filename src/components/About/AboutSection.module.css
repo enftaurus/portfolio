@@ -1,5 +1,40 @@
 .aboutSection {
+  position: relative;
   padding: 6rem 0;
+  /* NOTE: overflow must NOT be hidden here — the left/right slide-in panels need
+     to travel from the true screen edges. Clipping happens at the body level. */
+  overflow: clip; /* 'clip' prevents scrollbars but still clips at layout edge */
+}
+
+/* Floating Parallax Voxel Decorative Assets */
+.floatingPyramid {
+  position: absolute;
+  top: 12%;
+  right: -2%;
+  width: 180px;
+  height: auto;
+  opacity: 0.24;
+  pointer-events: none;
+  filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.35));
+  z-index: 0;
+  animation: floatBounce 6s ease-in-out infinite alternate;
+}
+
+.floatingCloud {
+  position: absolute;
+  bottom: 5%;
+  left: -3%;
+  width: 240px;
+  height: auto;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatBounce 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatBounce {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-18px) rotate(4deg); }
 }
 
 .sectionHeader {
@@ -30,7 +65,16 @@
   margin-top: 1rem;
 }
 
+/* Clips overflow from slide-in animation — prevents horizontal scrollbar */
+.slideWrapper {
+  overflow: hidden;
+  /* Add extra vertical space so panels have room to be visible during animation */
+  padding: 1rem 0;
+}
+
 .aboutGrid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2rem;
@@ -133,6 +177,12 @@
   border: 1px solid var(--border-color);
   border-radius: 6px;
   font-family: var(--font-mono);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.factCard:hover {
+  transform: translateX(6px);
+  border-color: rgba(56, 189, 248, 0.4);
 }
 
 .factLabel {
@@ -147,8 +197,103 @@
   color: var(--text);
 }
 
+/* ── GIF Typing Accent ─────────────────────────────────────────────────────── */
+.gifAccent {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(57, 255, 136, 0.2);
+  border-radius: 6px;
+}
+
+.gifImg {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  image-rendering: pixelated;
+  border: 1px solid var(--border-color);
+}
+
+.gifCaption {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+/* ── Coffee GIF Badge ──────────────────────────────────────────────────────── */
+.coffeeGifBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: rgba(17, 17, 17, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  border-left: 3px solid rgba(245, 158, 11, 0.6); /* amber accent for coffee */
+}
+
+.coffeeGif {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.coffeeMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.coffeeLabel {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.coffeeValue {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(245, 158, 11, 0.9);
+}
+
+/* ── Nether Portal Accent ──────────────────────────────────────────────────── */
+.netherPortalAccent {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 0.8rem;
+  border-top: 1px dashed rgba(138, 43, 226, 0.3);
+  margin-top: 0.4rem;
+}
+
+.netherPortal {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.6));
+}
+
+.netherLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: rgba(138, 43, 226, 0.8);
+  letter-spacing: 0.05em;
+}
+
 @media (max-width: 868px) {
   .aboutGrid {
     grid-template-columns: 1fr;
+  }
+  .floatingPyramid, .floatingCloud {
+    display: none;
   }
 }

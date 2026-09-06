@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollSlideText } from "../shared/ScrollSlideText";
+import { AnimatedHeading } from "../shared/AnimatedHeading";
 import styles from "./Philosophy.module.css";
 
 // System-timeline statements — each slides across the full width as you scroll
@@ -46,11 +47,11 @@ export const PhilosophySection: React.FC = () => {
 
       {/* Section label — inside container */}
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionNumber}>05 / HOW I BUILD</span>
-          <h2 className={styles.sectionTitle}>ENGINEERING PHILOSOPHY</h2>
-          <div className={styles.sectionLine} />
-        </div>
+        <AnimatedHeading
+          tag="05 / HOW I BUILD"
+          title="ENGINEERING PHILOSOPHY"
+          subtitle="First-principles development, low-level mechanics, and stress-tested architectures."
+        />
       </div>
 
       {/* Full-width slide tracks */}

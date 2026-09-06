@@ -3,17 +3,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--navbar-height);
-  z-index: 100;
+  height: var(--navbar-height, 70px);
+  z-index: 9999;
   transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(245, 235, 224, 0.05);
+  background: rgba(28, 25, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .navbarScrolled {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom-color: var(--border-color);
+  background: rgba(28, 25, 23, 0.94);
+  border-bottom-color: rgba(245, 235, 224, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .navContent {
@@ -27,48 +29,65 @@
   font-weight: 800;
   font-size: 1.1rem;
   letter-spacing: -0.02em;
-  color: var(--text);
-  font-family: var(--font-mono);
+  color: var(--text, #f5ebe0);
+  font-family: var(--font-mono, monospace);
+  text-decoration: none;
+  z-index: 2;
 }
 
 .logoAccent {
-  color: var(--accent);
+  color: var(--accent, #38bdf8);
 }
 
-.navLinks {
+/* Floating glassmorphic navbar links container */
+.navLinksPill {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 1.6rem;
+  background: rgba(28, 25, 23, 0.88);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 9999px;
+  padding: 0.45rem 1.4rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 12px rgba(56, 189, 248, 0.1);
+  z-index: 2;
 }
 
 .navLink {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-dim);
-  letter-spacing: 0.05em;
-  transition: color 0.2s ease;
-  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text, #f5ebe0);
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+  font-family: var(--font-mono, monospace);
+  text-decoration: none;
+  opacity: 0.85;
 }
 
 .navLink:hover {
-  color: var(--accent);
+  color: var(--accent, #38bdf8);
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  transform: translateY(-1px);
 }
 
 .navActions {
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 2;
 }
 
 .terminalBtn {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-color);
-  color: var(--text-dim);
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  font-family: var(--font-mono);
+  background: rgba(245, 235, 224, 0.06);
+  border: 1px solid rgba(245, 235, 224, 0.15);
+  color: var(--text, #f5ebe0);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -76,39 +95,41 @@
 }
 
 .terminalBtn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-dim);
+  border-color: var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+  background: rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
 
 .terminalKbd {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1px 4px;
+  background: rgba(245, 235, 224, 0.12);
+  padding: 1px 5px;
   border-radius: 3px;
   font-size: 0.7rem;
-  color: var(--accent);
+  color: var(--accent, #38bdf8);
 }
 
 .statusPill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
-  background: var(--accent-dim);
-  border: 1px solid rgba(57, 255, 136, 0.25);
-  color: var(--accent);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent, #38bdf8);
+  font-family: var(--font-mono, monospace);
 }
 
 .pulseDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background: var(--accent, #38bdf8);
+  box-shadow: 0 0 8px var(--accent, #38bdf8);
   animation: pulse 2s infinite ease-in-out;
 }
 
@@ -117,8 +138,8 @@
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-@media (max-width: 768px) {
-  .navLinks {
+@media (max-width: 860px) {
+  .navLinksPill {
     display: none;
   }
   .terminalBtnText {

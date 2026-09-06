@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   User, Briefcase, Code2, Cpu, Mail, Copy, Github,
-  Linkedin, Terminal, ArrowRight, Check,
+  Linkedin, Terminal, ArrowRight, Check, Download,
 } from "lucide-react";
 import { profileData } from "../../data/profile";
 import styles from "./CommandPalette.module.css";
@@ -50,6 +50,21 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   };
 
   const COMMANDS: PaletteCmd[] = [
+    {
+      id: "download-resume",
+      label: "Download Official Resume (PDF)",
+      description: "Raja_Babu_Resume.pdf",
+      icon: <Download size={14} />,
+      action: () => {
+        onClose();
+        const link = document.createElement("a");
+        link.href = "/rajababu.pdf";
+        link.download = "Raja_Babu_Resume.pdf";
+        link.target = "_blank";
+        link.click();
+      },
+      keywords: ["resume", "cv", "pdf", "download", "bio"],
+    },
     {
       id: "about", label: "Jump to About", description: "Engineering profile",
       icon: <User size={14} />,

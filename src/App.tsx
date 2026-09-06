@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import { PageLoader } from "./components/PageLoader/PageLoader";
 import { Navbar } from "./components/Navbar/Navbar";
 import { HeroSection } from "./components/Hero/HeroSection";
+import { Marquee } from "./components/Marquee/Marquee";
 import { AboutSection } from "./components/About/AboutSection";
 import { ExperienceSection } from "./components/Experience/ExperienceSection";
 import { ProjectsSection } from "./components/Projects/ProjectsSection";
 import { SkillsSection } from "./components/Skills/SkillsSection";
 import { CurrentlyBuilding } from "./components/CurrentlyBuilding/CurrentlyBuilding";
-import { ContactSection } from "./components/Contact/ContactSection";
+import { CTASection } from "./components/CTA/CTASection";
 import { TerminalModal } from "./components/EasterEgg/TerminalModal";
 import { CommandPalette } from "./components/CommandPalette/CommandPalette";
 import { CustomCursor } from "./components/Cursor/CustomCursor";
 import { WarpDivider } from "./components/shared/WarpDivider";
+import { RunningCat } from "./components/shared/RunningCat";
 
 export function App() {
   const [loading, setLoading]         = useState(true);
@@ -23,13 +25,13 @@ export function App() {
       // ~ or ` → toggle terminal
       if ((e.key === "`" || e.key === "~") && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
-        setTerminalOpen(prev => !prev);
+        setTerminalOpen((prev) => !prev);
         return;
       }
       // Ctrl+K or Cmd+K → toggle command palette
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
-        setPaletteOpen(prev => !prev);
+        setPaletteOpen((prev) => !prev);
         return;
       }
     };
@@ -50,13 +52,17 @@ export function App() {
 
           <main>
             <HeroSection />
+            <RunningCat />
+            <Marquee direction="left" />
             <WarpDivider />
             <AboutSection />
             <ExperienceSection />
             <ProjectsSection />
+            <Marquee direction="right" />
             <SkillsSection />
             <CurrentlyBuilding />
-            <ContactSection />
+            <RunningCat />
+            <CTASection />
           </main>
 
           <TerminalModal

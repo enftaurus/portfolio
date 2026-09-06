@@ -25,7 +25,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           <span className={styles.logoAccent}>RAJA</span>.BABU
         </a>
 
-        <nav className={styles.navLinks}>
+        {/* Glassmorphic Nav Pill to guarantee links are never covered by hero graphics */}
+        <nav className={styles.navLinksPill}>
+          <a href="#hero" className={styles.navLink}>HOME</a>
           <a href="#about" className={styles.navLink}>ABOUT</a>
           <a href="#experience" className={styles.navLink}>WORK</a>
           <a href="#projects" className={styles.navLink}>PROJECTS</a>

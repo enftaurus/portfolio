@@ -1,192 +1,236 @@
 .projectsSection {
+  position: relative;
+  width: 100%;
   padding: 6rem 0;
+  background-color: var(--bg, #0a0a0a);
+  overflow: hidden;
 }
 
-.sectionHeader {
-  margin-bottom: 3rem;
+/* Parallax Cloud Images */
+.cloudTopRight {
+  position: absolute;
+  top: 4%;
+  right: -5%;
+  width: min(45vw, 420px);
+  pointer-events: none;
+  opacity: 0.25;
+  z-index: 1;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
 }
 
-.sectionNumber {
-  font-size: 0.85rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  display: block;
-  font-family: var(--font-mono);
+.cloudBottomLeft {
+  position: absolute;
+  bottom: 6%;
+  left: -6%;
+  width: min(50vw, 460px);
+  pointer-events: none;
+  opacity: 0.2;
+  z-index: 1;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* Header matching user reference screenshot */
+.headerRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.titleContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.enchantedBook {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6));
+  animation: bookFloat 4s ease-in-out infinite alternate;
+}
+
+.stonePyramid {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+  animation: pyramidFloat 4s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes bookFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+}
+
+@keyframes pyramidFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-6px) rotate(3deg);
+  }
 }
 
 .sectionTitle {
-  font-size: 2rem;
-  font-weight: 800;
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--text, #f1f1f1);
   letter-spacing: -0.03em;
-  color: var(--text);
-  font-family: var(--font-mono);
 }
 
-.sectionLine {
-  height: 1px;
-  background: linear-gradient(90deg, var(--border-color), transparent);
-  margin-top: 1rem;
+.sectionDesc {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1.05rem;
+  color: var(--text-dim, #a0a0a0);
+  max-width: 640px;
+  line-height: 1.6;
 }
 
-.projectCard {
+/* Project Grid */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  margin-bottom: 2.5rem;
-  background: rgba(17, 17, 17, 0.7);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  z-index: 2;
+  margin-bottom: 3.5rem;
 }
 
-.isHovered {
-  border-color: rgba(57, 255, 136, 0.4);
-  box-shadow: 0 10px 30px rgba(57, 255, 136, 0.12);
-}
-
-.terminalHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1.2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--border-color);
-  font-family: var(--font-mono);
-}
-
-.projectIdBadge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.statusReadout {
-  font-size: 0.7rem;
-  color: var(--text-dim);
-}
-
-.projectBody {
+/* Card Styling inside MagicCard */
+.cardInner {
   padding: 2rem;
-}
-
-.projectTitleArea {
-  margin-bottom: 1rem;
-}
-
-.projectName {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  font-family: var(--font-mono);
-}
-
-.projectTagline {
-  font-size: 0.75rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  margin-top: 0.2rem;
-  display: block;
-  font-family: var(--font-mono);
-}
-
-.projectDesc {
-  font-family: var(--font-sans);
-  color: var(--text-dim);
-  line-height: 1.65;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
-
-.projectTech {
   display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.techPill {
-  font-size: 0.75rem;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  padding: 0.3rem 0.7rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  color: var(--text);
-}
-
-.projectActions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.btnPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: var(--accent);
-  color: #0a0a0a;
-  font-weight: 700;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: var(--font-mono);
-}
-
-.btnPrimary:hover {
-  background: #50ff97;
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(57, 255, 136, 0.4);
-}
-
-.btnOutline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  color: var(--text);
-  font-weight: 600;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: var(--font-mono);
-}
-
-.btnOutline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-dim);
-}
-
-.cardHoverGrid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
-  background-image: 
-    linear-gradient(to right, rgba(57, 255, 136, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(57, 255, 136, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
-.isHovered .cardHoverGrid {
-  opacity: 1;
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.cardTitle {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text, #f1f1f1);
+}
+
+.cardTagline {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--accent, #39ff88);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.cardDesc {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.95rem;
+  color: var(--text-dim, #8a8a8a);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.techBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: var(--text, #f1f1f1);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text, #f1f1f1);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cardLink:hover {
+  color: var(--accent, #39ff88);
+}
+
+/* Expand / Collapse Button */
+.toggleRow {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text, #f1f1f1);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15));
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.toggleBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .titleContainer {
+    gap: 1rem;
+  }
+
+  .enchantedBook,
+  .stonePyramid {
+    width: 48px;
+    height: 48px;
+  }
 }

@@ -16,14 +16,15 @@ interface GraphNode {
 interface GraphEdge {
   from: string;
   to: string;
+  label?: string;
 }
 
 const CAT_COLORS: Record<Category, string> = {
-  backend: "#39ff88",
-  db:      "#22d3ee",
-  ai:      "#a78bfa",
-  infra:   "#fb923c",
-  core:    "#fbbf24",
+  backend: "#38bdf8", // Electric Cyan
+  db:      "#22d3ee", // Vibrant Turquoise
+  ai:      "#a78bfa", // Soft Purple
+  infra:   "#fb923c", // Warm Orange
+  core:    "#f5ebe0", // Warm Sand
 };
 
 const CAT_LABELS: Record<Category, string> = {
@@ -34,7 +35,6 @@ const CAT_LABELS: Record<Category, string> = {
   core:    "CORE CS",
 };
 
-// Hub text lines (short, fits inside circle r=20)
 const HUB_TEXT: Record<Category, string[]> = {
   backend: ["BACK", "END"],
   db:      ["DB"],
@@ -45,43 +45,43 @@ const HUB_TEXT: Record<Category, string[]> = {
 
 const NODES: GraphNode[] = [
   // ── Hubs ───────────────────────────────────────────────────────────────────
-  { id: "hub-backend", x: 155, y: 225, label: "BACKEND",   type: "hub", category: "backend" },
-  { id: "hub-db",      x: 415, y: 108, label: "DATABASES", type: "hub", category: "db" },
-  { id: "hub-ai",      x: 690, y: 225, label: "AI / ML",   type: "hub", category: "ai" },
-  { id: "hub-infra",   x: 600, y: 435, label: "INFRA",     type: "hub", category: "infra" },
-  { id: "hub-core",    x: 218, y: 435, label: "CORE CS",   type: "hub", category: "core" },
+  { id: "hub-backend", x: 160, y: 220, label: "BACKEND",   type: "hub", category: "backend" },
+  { id: "hub-db",      x: 415, y: 110, label: "DATABASES", type: "hub", category: "db" },
+  { id: "hub-ai",      x: 680, y: 220, label: "AI / ML",   type: "hub", category: "ai" },
+  { id: "hub-infra",   x: 600, y: 430, label: "INFRA",     type: "hub", category: "infra" },
+  { id: "hub-core",    x: 230, y: 430, label: "CORE CS",   type: "hub", category: "core" },
 
   // ── Backend ────────────────────────────────────────────────────────────────
-  { id: "go",      x:  62, y: 148, label: "Go (Golang)", type: "skill", category: "backend", level: "Core" },
-  { id: "fastapi", x:  58, y: 298, label: "FastAPI",     type: "skill", category: "backend", level: "Core" },
-  { id: "rest",    x: 248, y: 152, label: "REST APIs",   type: "skill", category: "backend", level: "Production" },
-  { id: "jwt",     x: 250, y: 300, label: "JWT Auth",    type: "skill", category: "backend", level: "Production" },
+  { id: "go",      x:  65, y: 145, label: "Go (Golang)", type: "skill", category: "backend", level: "Core Stack" },
+  { id: "fastapi", x:  60, y: 295, label: "FastAPI",     type: "skill", category: "backend", level: "Production" },
+  { id: "rest",    x: 245, y: 145, label: "REST APIs",   type: "skill", category: "backend", level: "Production" },
+  { id: "jwt",     x: 250, y: 295, label: "JWT Auth",    type: "skill", category: "backend", level: "Production" },
 
   // ── Databases ──────────────────────────────────────────────────────────────
-  { id: "postgres", x: 318, y:  44, label: "PostgreSQL", type: "skill", category: "db", level: "Production" },
-  { id: "redis",    x: 512, y:  44, label: "Redis",      type: "skill", category: "db", level: "Production" },
-  { id: "pgvector", x: 316, y: 162, label: "pgvector",   type: "skill", category: "db", level: "Advanced" },
-  { id: "faiss",    x: 514, y: 162, label: "FAISS",      type: "skill", category: "db", level: "Advanced" },
-  { id: "mssql",    x: 415, y: 196, label: "MS SQL",     type: "skill", category: "db", level: "Intermediate" },
+  { id: "postgres", x: 315, y:  45, label: "PostgreSQL", type: "skill", category: "db", level: "Production" },
+  { id: "redis",    x: 515, y:  45, label: "Redis",      type: "skill", category: "db", level: "Production" },
+  { id: "pgvector", x: 315, y: 165, label: "pgvector",   type: "skill", category: "db", level: "Advanced" },
+  { id: "faiss",    x: 515, y: 165, label: "FAISS",      type: "skill", category: "db", level: "Advanced" },
+  { id: "mssql",    x: 415, y: 195, label: "MS SQL",     type: "skill", category: "db", level: "Intermediate" },
 
   // ── AI / ML ────────────────────────────────────────────────────────────────
-  { id: "langgraph", x: 778, y: 148, label: "LangGraph", type: "skill", category: "ai", level: "Advanced" },
-  { id: "langchain", x: 780, y: 308, label: "LangChain", type: "skill", category: "ai", level: "Advanced" },
-  { id: "opencv",    x: 605, y: 148, label: "OpenCV",    type: "skill", category: "ai", level: "Intermediate" },
-  { id: "yolo",      x: 602, y: 308, label: "YOLO",      type: "skill", category: "ai", level: "Intermediate" },
-  { id: "xgboost",   x: 692, y: 326, label: "XGBoost",   type: "skill", category: "ai", level: "Intermediate" },
+  { id: "langgraph", x: 775, y: 145, label: "LangGraph", type: "skill", category: "ai", level: "Advanced Agentic" },
+  { id: "langchain", x: 775, y: 305, label: "LangChain", type: "skill", category: "ai", level: "Advanced RAG" },
+  { id: "opencv",    x: 600, y: 145, label: "OpenCV",    type: "skill", category: "ai", level: "Intermediate" },
+  { id: "yolo",      x: 595, y: 305, label: "YOLO",      type: "skill", category: "ai", level: "Intermediate" },
+  { id: "xgboost",   x: 685, y: 325, label: "XGBoost",   type: "skill", category: "ai", level: "Intermediate" },
 
   // ── Infra ──────────────────────────────────────────────────────────────────
-  { id: "aws",        x: 522, y: 376, label: "AWS Bedrock", type: "skill", category: "infra", level: "Production" },
-  { id: "azure",      x: 516, y: 490, label: "Azure",       type: "skill", category: "infra", level: "Intermediate" },
-  { id: "docker",     x: 678, y: 374, label: "Docker",      type: "skill", category: "infra", level: "Production" },
-  { id: "kubernetes", x: 682, y: 490, label: "Kubernetes",  type: "skill", category: "infra", level: "Intermediate" },
+  { id: "aws",        x: 520, y: 375, label: "AWS Bedrock", type: "skill", category: "infra", level: "Production" },
+  { id: "azure",      x: 515, y: 490, label: "Azure",       type: "skill", category: "infra", level: "Intermediate" },
+  { id: "docker",     x: 675, y: 370, label: "Docker",      type: "skill", category: "infra", level: "Production" },
+  { id: "kubernetes", x: 680, y: 490, label: "Kubernetes",  type: "skill", category: "infra", level: "Intermediate" },
 
   // ── Core CS ────────────────────────────────────────────────────────────────
-  { id: "dsa",   x: 126, y: 374, label: "DSA",            type: "skill", category: "core", level: "Core" },
-  { id: "oop",   x: 120, y: 492, label: "OOP & DBMS",     type: "skill", category: "core", level: "Core" },
-  { id: "os",    x: 300, y: 492, label: "OS & Networks",  type: "skill", category: "core", level: "Core" },
-  { id: "langs", x: 308, y: 374, label: "Go/Python/Java", type: "skill", category: "core", level: "Core" },
+  { id: "dsa",   x: 130, y: 370, label: "DSA",            type: "skill", category: "core", level: "First Principles" },
+  { id: "oop",   x: 125, y: 490, label: "OOP & DBMS",     type: "skill", category: "core", level: "Core Architecture" },
+  { id: "os",    x: 305, y: 490, label: "OS & Networks",  type: "skill", category: "core", level: "Low-Level" },
+  { id: "langs", x: 310, y: 370, label: "Go/Python/C",   type: "skill", category: "core", level: "Polyglot" },
 ];
 
 const HUB_EDGES: GraphEdge[] = [
@@ -109,17 +109,43 @@ const HUB_EDGES: GraphEdge[] = [
   { from: "hub-core",    to: "langs"     },
 ];
 
-// Cross-category semantic connections
+// Rich production cross-category connections
 const CROSS_EDGES: GraphEdge[] = [
-  { from: "pgvector", to: "langgraph" }, // vector DB powers agentic search
-  { from: "pgvector", to: "langchain" }, // RAG pipeline
-  { from: "fastapi",  to: "postgres"  }, // common backend pair
-  { from: "go",       to: "dsa"       }, // algorithms in backend
+  // AI <-> DB & Vector Memory
+  { from: "pgvector", to: "langgraph", label: "Vector Memory Store" },
+  { from: "pgvector", to: "langchain", label: "RAG Retrieval Index" },
+  { from: "faiss",    to: "langchain", label: "Dense Vector Search" },
+  { from: "redis",    to: "langgraph", label: "State Checkpoint Saver" },
+  { from: "postgres", to: "pgvector",  label: "Relational Vector Extension" },
+
+  // AI <-> Backend APIs
+  { from: "fastapi",  to: "langgraph", label: "Agentic REST API" },
+  { from: "fastapi",  to: "langchain", label: "Async LLM Pipeline" },
+  { from: "fastapi",  to: "opencv",    label: "Vision Frame Endpoint" },
+
+  // AI & Backend <-> Cloud Infra
+  { from: "aws",      to: "langgraph", label: "Bedrock Foundation LLM" },
+  { from: "aws",      to: "langchain", label: "Bedrock Embedding API" },
+  { from: "docker",   to: "langgraph", label: "Agent Microservice Container" },
+  { from: "docker",   to: "fastapi",   label: "Multi-Stage Python Build" },
+  { from: "docker",   to: "go",        label: "Minimal Static Binary Image" },
+  { from: "docker",   to: "kubernetes",label: "Cluster Orchestration" },
+
+  // Backend <-> Databases
+  { from: "fastapi",  to: "postgres",  label: "Relational Queries & ORM" },
+  { from: "fastapi",  to: "redis",     label: "Pub/Sub & Cache Layer" },
+  { from: "go",       to: "postgres",  label: "High-Concurrency SQL Pool" },
+  { from: "go",       to: "redis",     label: "In-Memory Lock Engine" },
+  { from: "jwt",      to: "fastapi",   label: "Stateless Session Security" },
+
+  // Core CS <-> Languages & Algorithms
+  { from: "dsa",      to: "go",        label: "Concurrent Algorithms" },
+  { from: "langs",    to: "fastapi",   label: "Async Python Engine" },
+  { from: "opencv",   to: "yolo",      label: "Real-Time Object Detection Pipeline" },
 ];
 
 const nodeMap = new Map<string, GraphNode>(NODES.map(n => [n.id, n]));
 
-// Label anchor relative to hub center
 function labelProps(node: GraphNode) {
   const hub = nodeMap.get(`hub-${node.category}`)!;
   const dX = node.x - hub.x;
@@ -132,8 +158,9 @@ function labelProps(node: GraphNode) {
 export const SkillGraph: React.FC = () => {
   const [activeCat, setActiveCat] = useState<Category | null>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [hoveredEdge, setHoveredEdge] = useState<GraphEdge | null>(null);
 
-  // Pre-compute skill IDs cross-connected to the active category
+  // Pre-compute skill IDs cross-connected to the active or hovered category/skill
   const crossNodes = new Set<string>();
   if (activeCat) {
     CROSS_EDGES.forEach(e => {
@@ -143,61 +170,98 @@ export const SkillGraph: React.FC = () => {
       if (tn.category === activeCat) crossNodes.add(e.from);
     });
   }
+  if (hoveredSkill) {
+    CROSS_EDGES.forEach(e => {
+      if (e.from === hoveredSkill) crossNodes.add(e.to);
+      if (e.to === hoveredSkill) crossNodes.add(e.from);
+    });
+  }
 
   const nodeOpacity = (id: string, cat: Category, type: "hub" | "skill") => {
-    if (!activeCat) return type === "hub" ? 1 : 0.82;
+    if (hoveredSkill) {
+      if (id === hoveredSkill) return 1;
+      if (crossNodes.has(id)) return 0.95;
+      return 0.15;
+    }
+    if (!activeCat) return type === "hub" ? 1 : 0.85;
     if (cat === activeCat) return 1;
     if (type === "hub") {
-      // Dim cross-connected hubs less than fully unrelated ones
       const hasCrossToActive = [...crossNodes].some(nid => nodeMap.get(nid)?.category === cat);
-      return hasCrossToActive ? 0.35 : 0.14;
+      return hasCrossToActive ? 0.45 : 0.15;
     }
-    if (crossNodes.has(id)) return 0.62;
-    return 0.1;
+    if (crossNodes.has(id)) return 0.75;
+    return 0.12;
   };
 
   const hubEdgeOp = (cat: Category) => {
-    if (!activeCat) return 0.32;
-    return cat === activeCat ? 0.78 : 0.05;
+    if (hoveredSkill) {
+      const targetNode = nodeMap.get(hoveredSkill);
+      if (targetNode && targetNode.category === cat) return 0.85;
+      return 0.1;
+    }
+    if (!activeCat) return 0.38;
+    return cat === activeCat ? 0.85 : 0.08;
   };
 
   const crossEdgeOp = (e: GraphEdge) => {
+    if (hoveredSkill) {
+      return e.from === hoveredSkill || e.to === hoveredSkill ? 0.95 : 0.05;
+    }
     const fn = nodeMap.get(e.from)!;
     const tn = nodeMap.get(e.to)!;
-    if (!activeCat) return 0.18;
-    return fn.category === activeCat || tn.category === activeCat ? 0.72 : 0.03;
+    if (!activeCat) return 0.3;
+    return fn.category === activeCat || tn.category === activeCat ? 0.85 : 0.05;
   };
+
+  // Active relationship highlight label
+  const activeRelationshipLabel = hoveredEdge?.label
+    ? hoveredEdge.label
+    : hoveredSkill
+    ? (() => {
+        const edge = CROSS_EDGES.find(e => e.from === hoveredSkill || e.to === hoveredSkill);
+        return edge ? `${nodeMap.get(edge.from)?.label} ↔ ${nodeMap.get(edge.to)?.label}: ${edge.label}` : null;
+      })()
+    : null;
 
   return (
     <div className={styles.graphWrapper}>
       <svg
         viewBox="0 0 900 560"
         className={styles.graphSvg}
-        onMouseLeave={() => { setActiveCat(null); setHoveredSkill(null); }}
-        aria-label="Interactive skill node graph"
+        onMouseLeave={() => { setActiveCat(null); setHoveredSkill(null); setHoveredEdge(null); }}
+        aria-label="Interactive modern technology connection graph"
       >
         <defs>
           {(Object.keys(CAT_COLORS) as Category[]).map(cat => (
             <filter key={cat} id={`gf-${cat}`} x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="5" result="b" />
+              <feGaussianBlur stdDeviation="6" result="b" />
               <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
           ))}
         </defs>
 
-        {/* ── Cross-category dashed edges (render first / below) ─────────── */}
+        {/* ── Cross-category production connections (dashed energy beams) ─────────── */}
         {CROSS_EDGES.map((e, i) => {
           const f = nodeMap.get(e.from)!;
           const t = nodeMap.get(e.to)!;
+          const isHovEdge = hoveredEdge === e || (hoveredSkill && (e.from === hoveredSkill || e.to === hoveredSkill));
+          const color = isHovEdge ? "#38bdf8" : "rgba(245, 235, 224, 0.4)";
+
           return (
-            <line key={`cx-${i}`}
-              x1={f.x} y1={f.y} x2={t.x} y2={t.y}
-              stroke="rgba(255,255,255,0.85)"
-              strokeWidth="1"
-              strokeDasharray="5 9"
-              className={styles.edgeLine}
-              style={{ opacity: crossEdgeOp(e), transition: "opacity 0.22s ease" }}
-            />
+            <g key={`cx-${i}`} onMouseEnter={() => setHoveredEdge(e)} onMouseLeave={() => setHoveredEdge(null)}>
+              <line
+                x1={f.x} y1={f.y} x2={t.x} y2={t.y}
+                stroke={color}
+                strokeWidth={isHovEdge ? "2" : "1"}
+                strokeDasharray="6 8"
+                className={styles.edgeLine}
+                style={{
+                  opacity: crossEdgeOp(e),
+                  transition: "all 0.25s ease",
+                  cursor: "pointer"
+                }}
+              />
+            </g>
           );
         })}
 
@@ -215,7 +279,7 @@ export const SkillGraph: React.FC = () => {
               style={{
                 opacity: hubEdgeOp(f.category),
                 transition: "opacity 0.22s ease",
-                animationDelay: `${i * 0.045}s`,
+                animationDelay: `${i * 0.03}s`,
               }}
             />
           );
@@ -224,37 +288,38 @@ export const SkillGraph: React.FC = () => {
         {/* ── Skill nodes ───────────────────────────────────────────────── */}
         {NODES.filter(n => n.type === "skill").map(node => {
           const color = CAT_COLORS[node.category];
-          const isActive = activeCat === node.category;
-          const isHov = hoveredSkill === node.id;
+          const isActive = activeCat === node.category || hoveredSkill === node.id || crossNodes.has(node.id);
+          const isDirectHov = hoveredSkill === node.id;
           const lp = labelProps(node);
           const op = nodeOpacity(node.id, node.category, "skill");
 
           return (
             <g key={node.id}
-              style={{ opacity: op, transition: "opacity 0.22s ease", cursor: "default" }}
+              style={{ opacity: op, transition: "opacity 0.22s ease", cursor: "pointer" }}
               onMouseEnter={() => setHoveredSkill(node.id)}
               onMouseLeave={() => setHoveredSkill(null)}
             >
               <circle
                 cx={node.x} cy={node.y}
-                r={isHov || isActive ? 9 : 6}
-                fill={isActive ? `${color}2e` : "rgba(255,255,255,0.04)"}
+                r={isDirectHov ? 10 : isActive ? 7.5 : 5.5}
+                fill={isActive ? `${color}35` : "rgba(245,235,224,0.06)"}
                 stroke={color}
-                strokeWidth={isActive ? 2 : 1}
+                strokeWidth={isDirectHov ? 2.5 : isActive ? 1.8 : 1}
                 filter={isActive ? `url(#gf-${node.category})` : undefined}
-                style={{ transition: "r 0.18s ease, fill 0.18s ease, stroke-width 0.18s ease" }}
+                style={{ transition: "r 0.2s ease, fill 0.2s ease, stroke-width 0.2s ease" }}
               />
               <text x={node.x + lp.dx} y={node.y + lp.dy}
                 textAnchor={lp.anchor}
-                fill={isActive ? "#ffffff" : "rgba(255,255,255,0.62)"}
-                fontSize="9"
+                fill={isActive ? "#ffffff" : "rgba(245,235,224,0.65)"}
+                fontSize={isDirectHov ? "10" : "9"}
                 fontFamily="JetBrains Mono, monospace"
+                fontWeight={isActive ? "700" : "500"}
                 style={{ userSelect: "none", pointerEvents: "none", transition: "fill 0.18s ease" }}
               >
                 {node.label}
               </text>
               {/* Level badge shown on hover */}
-              {isHov && node.level && (
+              {isDirectHov && node.level && (
                 <text x={node.x + lp.dx} y={node.y + lp.dy + 13}
                   textAnchor={lp.anchor}
                   fill={color}
@@ -275,7 +340,7 @@ export const SkillGraph: React.FC = () => {
           const color = CAT_COLORS[node.category];
           const isActive = activeCat === node.category;
           const op = nodeOpacity(node.id, node.category, "hub");
-          const r = isActive ? 23 : 18;
+          const r = isActive ? 24 : 19;
           const lines = HUB_TEXT[node.category];
 
           return (
@@ -285,23 +350,23 @@ export const SkillGraph: React.FC = () => {
             >
               {/* Animated outer ring when active */}
               {isActive && (
-                <circle cx={node.x} cy={node.y} r={34}
+                <circle cx={node.x} cy={node.y} r={36}
                   fill="none" stroke={color} strokeWidth="1"
-                  opacity="0.25" className={styles.hubPulse}
+                  opacity="0.3" className={styles.hubPulse}
                 />
               )}
-              {/* Dashed orbit ring */}
-              <circle cx={node.x} cy={node.y} r={isActive ? 31 : 25}
+              {/* Orbit ring */}
+              <circle cx={node.x} cy={node.y} r={isActive ? 32 : 26}
                 fill="none" stroke={color} strokeWidth="1"
                 strokeDasharray={isActive ? "none" : "4 5"}
-                opacity={isActive ? 0.65 : 0.38}
+                opacity={isActive ? 0.7 : 0.4}
                 style={{ transition: "all 0.22s ease" }}
               />
               {/* Filled hub */}
               <circle cx={node.x} cy={node.y} r={r}
-                fill={`${color}16`}
+                fill={`${color}22`}
                 stroke={color}
-                strokeWidth={isActive ? 2 : 1.5}
+                strokeWidth={isActive ? 2.2 : 1.5}
                 filter={`url(#gf-${node.category})`}
                 style={{ transition: "all 0.22s ease" }}
               />
@@ -325,6 +390,14 @@ export const SkillGraph: React.FC = () => {
           );
         })}
       </svg>
+
+      {/* Relationship telemetry status bar */}
+      <div className={styles.graphTelemetryBar}>
+        <span className={styles.telemetryTag}>SYSTEM PIPELINE:</span>
+        <span className={styles.telemetryText}>
+          {activeRelationshipLabel || "Hover over any node or edge connection to inspect live data flow"}
+        </span>
+      </div>
 
       {/* Category legend / filter buttons */}
       <div className={styles.graphLegend}>

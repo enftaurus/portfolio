@@ -1,0 +1,50 @@
+.magicCardWrapper {
+  position: relative;
+  border-radius: 16px;
+  background: rgba(17, 17, 17, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.magicCardWrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(57, 255, 136, 0.5) 0%,
+    rgba(0, 225, 255, 0.3) 40%,
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: var(--mouse-opacity, 0);
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.magicCardGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(57, 255, 136, 0.09) 0%,
+    transparent 80%
+  );
+  opacity: var(--mouse-opacity, 0);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.magicCardContent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}

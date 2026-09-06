@@ -17,6 +17,7 @@ interface CommandLog {
 const COMMAND_REGISTRY = [
   "help",
   "about",
+  "resume",
   "projects",
   "skills",
   "contact",
@@ -65,6 +66,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
           <div>
             <div style={{ color: "var(--accent)", marginBottom: "4px" }}>AVAILABLE COMMANDS:</div>
             <div>• <span style={{ color: "#00e5ff" }}>about</span>       : Print engineering background & research interest</div>
+            <div>• <span style={{ color: "#00e5ff" }}>resume</span>      : Download official PDF resume (Raja_Babu_Resume.pdf)</div>
             <div>• <span style={{ color: "#00e5ff" }}>projects</span>    : List open-source platforms (intrvyuuu, ZeroNet, Stay Up, Eterno)</div>
             <div>• <span style={{ color: "#00e5ff" }}>skills</span>      : Display backend & AI tech stack</div>
             <div>• <span style={{ color: "#00e5ff" }}>contact</span>     : Print direct email & collaboration info</div>
@@ -74,6 +76,23 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
             <div>• <span style={{ color: "#00e5ff" }}>exit</span>        : Close terminal window</div>
           </div>
         );
+        break;
+
+      case "resume":
+      case "download":
+      case "download-resume":
+        {
+          const link = document.createElement("a");
+          link.href = "/rajababu.pdf";
+          link.download = "Raja_Babu_Resume.pdf";
+          link.target = "_blank";
+          link.click();
+          output = (
+            <div style={{ color: "var(--accent)", fontWeight: "bold" }}>
+              📄 Initiated automatic download for <span>Raja_Babu_Resume.pdf</span>...
+            </div>
+          );
+        }
         break;
 
       case "about":

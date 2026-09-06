@@ -1,7 +1,38 @@
-/* ─── Skills Section — SVG node graph & Structured Stack ─────────────────── */
-
 .skillsSection {
+  position: relative;
   padding: 6rem 0;
+  overflow: clip;
+}
+
+/* Floating Parallax Shapes */
+.floatingCloud {
+  position: absolute;
+  top: 8%;
+  left: -3%;
+  width: 250px;
+  height: auto;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatCloud 8s ease-in-out infinite alternate;
+}
+
+.floatingBook {
+  position: absolute;
+  bottom: 12%;
+  right: -2%;
+  width: 170px;
+  height: auto;
+  opacity: 0.2;
+  pointer-events: none;
+  filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.35));
+  z-index: 0;
+  animation: floatCloud 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(3deg); }
 }
 
 /* Section header ------------------------------------------------------------ */
@@ -31,6 +62,11 @@
   height: 1px;
   background: linear-gradient(90deg, var(--border-color), transparent);
   margin-top: 1rem;
+}
+
+/* Slide system — clips overflow so the animated content doesn't create scrollbars */
+.slideWrapper {
+  overflow: hidden;
 }
 
 /* Terminal-chrome frame around the graph ------------------------------------ */
@@ -91,6 +127,35 @@
 @keyframes hubBreath {
   0%, 100% { r: 34; opacity: 0.2; }
   50%       { r: 40; opacity: 0.08; }
+}
+
+/* Graph Telemetry Bar -------------------------------------------------------- */
+.graphTelemetryBar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(28, 25, 23, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 1rem 0.5rem 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  color: var(--text, #f5ebe0);
+}
+
+.telemetryTag {
+  color: var(--accent, #38bdf8);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.telemetryText {
+  color: var(--text-dim, #a89a8b);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Legend -------------------------------------------------------------------- */
@@ -236,6 +301,82 @@
   line-height: 1.4;
 }
 
+/* ── Creative Accents ──────────────────────────────────────────────────────── */
+
+/* Header left cluster: gif + text */
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Matrix rain GIF in frame header */
+.matrixGif {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 3px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* Row that holds graph hint + llama mascot */
+.graphHintRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* Bouncing llama mascot below graph */
+.llamaAccent {
+  width: 52px;
+  height: auto;
+  opacity: 0.75;
+  filter: drop-shadow(0 4px 8px rgba(56, 189, 248, 0.3));
+  flex-shrink: 0;
+}
+
+/* ── Big Coding GIF Banner ─────────────────────────────────────────────────── */
+.codingGifBanner {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: 2.5rem;
+  /* subtle glow */
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.08), 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.codingGifImg {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  /* Slightly desaturate to match dark theme */
+  filter: brightness(0.9) saturate(0.85);
+}
+
+.codingGifOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+}
+
+.codingGifLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+}
+
 /* Mobile -------------------------------------------------------------------- */
 @media (max-width: 680px) {
   .graphFrameHeader { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
@@ -243,4 +384,7 @@
   .graphLegend      { gap: 0.4rem; }
   .legendBtn        { font-size: 0.62rem; padding: 0.25rem 0.55rem; }
   .stackCardsGrid   { grid-template-columns: 1fr; }
+  .llamaAccent      { display: none; }
 }
+
+
